@@ -25,7 +25,34 @@ begin
 {inst_mem[27],inst_mem[26],inst_mem[25],inst_mem[24]} = 32'h045b0463;
 
 //li x23, 0 #j
-{inst_mem[15],inst_mem[14],inst_mem[13],inst_mem[12]} = 32'h00000b93;
+{inst_mem[31],inst_mem[30],inst_mem[29],inst_mem[28]} = 32'h00000b93;
+//addi x17 x17 1
+{inst_mem[35],inst_mem[34],inst_mem[33],inst_mem[32]} = 32'h00188893;
+//slli x31 x23 2
+{inst_mem[39],inst_mem[38],inst_mem[37],inst_mem[36]} = 32'h002b9f93;
+//add x31 x10 x31
+{inst_mem[43],inst_mem[42],inst_mem[41],inst_mem[40]} = 32'h01f50fb3;
+//ld x27 0(x31)
+{inst_mem[47],inst_mem[46],inst_mem[45],inst_mem[44]} = 32'h0x000fbd83;
+//lw x28 4(x31)
+{inst_mem[51],inst_mem[50],inst_mem[49],inst_mem[48]} = 32'h004fae03;
+//blt x28 x27 swap(24)
+{inst_mem[55],inst_mem[54],inst_mem[53],inst_mem[52]} = 32'h01be4c63;
+//addi x23 x23 1
+{inst_mem[59],inst_mem[58],inst_mem[57],inst_mem[56]} = 32'h001b8b93;
+
+//blt x23 x5 innerloop(-28)
+
+{inst_mem[63],inst_mem[62],inst_mem[61],inst_mem[60]} = 32'hfe5bc2e3;
+
+//addi x22 x22 1
+{inst_mem[67],inst_mem[66],inst_mem[65],inst_mem[64]} = 32'h001b0b13;
+
+
+
+
+
+
 
 
 
