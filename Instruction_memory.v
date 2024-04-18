@@ -14,6 +14,7 @@ begin
 {inst_mem[7],inst_mem[6],inst_mem[5],inst_mem[4]} =   32'h00500293;
 //li x22, 0 #i
 {inst_mem[11],inst_mem[10],inst_mem[9],inst_mem[8]} = 32'h00000b13;
+
 //jal x1, sort(8)
 {inst_mem[19],inst_mem[18],inst_mem[17],inst_mem[16]} = 32'h008000ef;
 //j exit
