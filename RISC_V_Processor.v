@@ -31,7 +31,11 @@ module RISC_V_Processor(
     output wire RegWrite,
     output wire [1:0] ALUOp,
     output wire [63:0] Adder2Out,
-    output wire [3:0] Operation
+    output wire [3:0] Operation,
+    output wire [63:0] val1,
+    output wire [63:0] val2,
+    output wire [63:0] val3,
+    output wire [63:0] val4
 
 );
 
@@ -54,7 +58,7 @@ assign funct = {Instruction[30], Instruction[14:12]};
 ALU_Control AC(ALUOp, funct, Operation);
 Adder A2(PC_Out, b, Adder2Out);
 ALU_64_bit A(ReadData1, Mux2Out, Operation, Result, ZERO);
-Data_Memory DM(Result, ReadData2, clk, MemWrite, MemRead, Read_Data);
+Data_Memory DM(Result, ReadData2, clk, MemWrite, MemRead, val1, val2, val3, val4, Read_Data);
 Mux M3(Read_Data, Result, MemtoReg, WriteData);
 branching_unit bu(funct3, ReadData1, Mux2Out, branch_out);
 

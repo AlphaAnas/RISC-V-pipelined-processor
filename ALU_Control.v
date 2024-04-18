@@ -29,7 +29,7 @@ output reg [3:0] Operation
 always @ (ALUOp or Funct)
 begin
 case(ALUOp)
-2'b00: Operation = 4'b0010;
+2'b00: Operation = 4'b0010; // 
 2'b01: Operation = 4'b0110;
 2'b10:
 begin
