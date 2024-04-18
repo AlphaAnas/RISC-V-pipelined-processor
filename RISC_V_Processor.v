@@ -37,10 +37,11 @@ module RISC_V_Processor(
 
 wire [3:0] Funct;
 wire [63:0] b = imm_data << 2; // doing shift left by 1 bit
-wire PC_Src = Branch & ZERO;
+wire branch_out;
+//wire PC_Src = branch_out & ZERO;
 
 Adder A1(PC_Out, 64'd4, Adder1Out);
-Mux M1(Adder1Out, Adder2Out, PC_Src, PC_In);
+Mux M1(Adder1Out, Adder2Out, ( branch_out && ZERO), PC_In); // right pr sb se ooper wala
 Program_Counter PC(clk, reset, PC_In, PC_Out);
 Instruction_Memory IM(PC_Out, Instruction);
 InsParser IP(Instruction, opcode, rd, funct3, rs1, rs2, funct7);
@@ -55,5 +56,6 @@ Adder A2(PC_Out, b, Adder2Out);
 ALU_64_bit A(ReadData1, Mux2Out, Operation, Result, ZERO);
 Data_Memory DM(Result, ReadData2, clk, MemWrite, MemRead, Read_Data);
 Mux M3(Read_Data, Result, MemtoReg, WriteData);
+branching_unit bu(funct3, ReadData1, Mux2Out, branch_out);
 
 endmodule
