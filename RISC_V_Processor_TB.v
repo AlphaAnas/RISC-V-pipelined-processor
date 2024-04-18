@@ -51,6 +51,10 @@ module RISC_V_Processor_TB();
     wire [1:0] ALUOp;
     wire [63:0] Adder2Out;
     wire [3:0] Operation;
+     wire [63:0] val1;
+     wire [63:0] val2;
+     wire [63:0] val3;
+     wire [63:0] val4;
     
 
     // Instantiate RISC_V_Processor module
@@ -82,7 +86,11 @@ module RISC_V_Processor_TB();
         .RegWrite(RegWrite),
         .ALUOp(ALUOp),
         .Adder2Out(Adder2Out),
-        .Operation(Operation)
+        .Operation(Operation),
+        .val1(val1),
+        .val2(val2),
+        .val3(val3),
+        .val4(val4)
     );
     
     // Initialize signals
