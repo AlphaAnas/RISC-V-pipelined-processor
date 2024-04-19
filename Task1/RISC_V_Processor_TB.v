@@ -26,6 +26,7 @@ module RISC_V_Processor_TB();
     reg reset;
     
     wire [63:0] PC_Out;        // Instr Addr
+    wire [63:0] PC_In;
     wire [31:0] Instruction;
     wire [4:0] rs1;
     wire [4:0] rs2;
@@ -62,6 +63,7 @@ module RISC_V_Processor_TB();
         .clk(clk),
         .reset(reset),
         .PC_Out(PC_Out),
+        .PC_In(PC_In),
         .Instruction(Instruction),
         .rs1(rs1),
         .rs2(rs2),
