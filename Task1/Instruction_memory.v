@@ -9,18 +9,19 @@ reg [7:0] inst_mem [95:0]; // we will make it bigger as per the memory required
 initial
 begin
 //li x10, 0x100 #base address
-{inst_mem[3],inst_mem[2],inst_mem[1],inst_mem[0]} =   32'h10000513;//1
+{ inst_mem[3],inst_mem[2],inst_mem[1],inst_mem[0] } =   32'h10000513;//1
 //li x5, 5 #length
 {inst_mem[7],inst_mem[6],inst_mem[5],inst_mem[4]} =   32'h00500293;
 //li x22, 0 #i
 {inst_mem[11],inst_mem[10],inst_mem[9],inst_mem[8]} = 32'h00000b13;
 
-//jal x1, sort(8)
-{inst_mem[19],inst_mem[18],inst_mem[17],inst_mem[16]} = 32'h008000ef;
-//j exit
-{inst_mem[23],inst_mem[22],inst_mem[21],inst_mem[20]} = 32'h04c0006f;
-//beq x22 x5 exit(72)
-{inst_mem[27],inst_mem[26],inst_mem[25],inst_mem[24]} = 32'h045b0463;
+////beq x0, x0, sort(4)
+//{inst_mem[19],inst_mem[18],inst_mem[17],inst_mem[16]} = 32'h00000263;
+//beq x22, x5, exit
+{inst_mem[15],inst_mem[14],inst_mem[13],inst_mem[12]} = 32'h045b0463;
+//{inst_mem[19],inst_mem[18],inst_mem[17],inst_mem[16]} 
+//{inst_mem[23],inst_mem[22],inst_mem[21],inst_mem[20]} 
+//{inst_mem[27],inst_mem[26],inst_mem[25],inst_mem[24]} 
 //li x23, 0 #j
 {inst_mem[31],inst_mem[30],inst_mem[29],inst_mem[28]} = 32'h00000b93;
 //addi x17 x17 1
@@ -42,9 +43,10 @@ begin
 //addi x22 x22 1
 {inst_mem[67],inst_mem[66],inst_mem[65],inst_mem[64]} = 32'h001b0b13;
 //blt x22, x5, sort
-{inst_mem[71], inst_mem[70], inst_mem[69], inst_mem[68]} = 32'h005b4063;
-//jalr x0, 0(x1)
-{inst_mem[75], inst_mem[74], inst_mem[73], inst_mem[72]} = 32'h00008067;
+{inst_mem[71], inst_mem[70], inst_mem[69], inst_mem[68]} = 32'hfd62dae3;
+//beq x0, x0, exit(24)
+{inst_mem[75], inst_mem[74], inst_mem[73], inst_mem[72]} = 32'h00000c63;
+
 //lw x8, 0(x31)
 {inst_mem[79], inst_mem[78], inst_mem[77], inst_mem[76]} = 32'h000fa403;
 //lw x9,4(x31)
@@ -53,8 +55,8 @@ begin
 {inst_mem[87], inst_mem[86], inst_mem[85], inst_mem[84]} = 32'h008fa223;
 //sw x9, 0(x31)
 {inst_mem[91], inst_mem[90], inst_mem[89], inst_mem[88]} = 32'h009fa023;
-//beq x0, x0, sort
-{inst_mem[95], inst_mem[94], inst_mem[93], inst_mem[92]} = 32'h00000063;
+//beq x0, x0, sort(-68)
+{inst_mem[95], inst_mem[94], inst_mem[93], inst_mem[92]} = 32'hfa000ee3;
 
 end
 //extract the data as per the given index
