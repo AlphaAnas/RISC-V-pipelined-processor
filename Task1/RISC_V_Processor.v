@@ -56,7 +56,7 @@ Mux M2(ReadData2, imm_data, ALUSrc, Mux2Out);
 
 assign funct = {Instruction[30], Instruction[14:12]};
 ALU_Control AC(ALUOp, funct, Operation);
-Adder A2(PC_Out, b, Adder2Out);
+Adder A2(PC_Out, imm_data*2, Adder2Out);
 ALU_64_bit A(ReadData1, Mux2Out, Operation, Result, ZERO);
 Data_Memory DM(Result, ReadData2, clk, MemWrite, MemRead, val1, val2, val3, val4, Read_Data);
 Mux M3(Read_Data, Result, MemtoReg, WriteData);

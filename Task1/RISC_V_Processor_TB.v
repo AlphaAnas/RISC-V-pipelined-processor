@@ -95,14 +95,12 @@ module RISC_V_Processor_TB();
         .val4(val4)
     );
     
-    // Initialize signals
     initial begin
-        clk = 0;
-        reset = 1'b1;
-        #100 reset = 0;
+    clk = 0; reset = 1'b1;
+    #10 reset = 0;
     end
     
-    // Toggle clock
-    always #100 clk = ~clk;
-
-endmodule
+    always
+        #2 clk = ~clk;
+    
+    endmodule
