@@ -45,12 +45,10 @@ wire branch_out;
 
 assign funct = {Instruction[30], Instruction[14:12]};
 
-
-
 wire [63:0] IFID_Out;
 wire [31:0] IFIDIns_Out;
 
-wire [63:0] IDEX_Out, IDEXReadData1, IDEXReadData2;
+wire [63:0] IDEX_Out, IDEXReadData1, IDEXReadData2, IDEXimm_data;
 wire [4:0] IDEXrs1, IDEXrs2, IDEXrd;
 wire [3:0] IDEXfunct3;
 wire IDEXBranch, IDEXMemRead, IDEXMemtoReg, IDEXMemWrite, IDEXRegWrite, IDEXALUSrc;
@@ -63,8 +61,15 @@ wire [3:0] idexfunct;
 
 wire [63:0] EXMEMADDOUT;
 wire EXMEMZero;
+wire [63:0] EXMEMALUResultOut;
 wire [63:0] EXMEMMux_3to1Out2;
 wire EXMEMbranch_out;
+wire [4:0]  EXMEMRD;
+wire EXMEMBranch, EXMEMMemRead, EXMEMMemtoReg, EXMEMMemWrite, EXMEMRegWrite;
+
+wire [63:0] MEMWEBRead_DataOut, MEMWEBALUOut;
+wire [4:0] MEMWEBrd; 
+wire MEMWEBMemtoReg, MEMWEBregwrite;
 
 Program_Counter PC(clk, reset, PC_In, PC_Out);
 Instruction_Memory IM(PC_Out, Instruction);

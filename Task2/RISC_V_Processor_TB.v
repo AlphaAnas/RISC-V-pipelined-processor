@@ -41,6 +41,7 @@ module RISC_V_Processor_TB();
         .clk(clk),
         .reset(reset),
         .PC_Out(PC_Out),
+        .PC_In(PC_In),
         .Instruction(Instruction),
         .rs1(rs1),
         .rs2(rs2),
