@@ -20,10 +20,10 @@ begin
 for(i =0; i<256; i=i+1)begin
     DataMemory[i] = 1'b0;  // flush the data memory first
 end
-DataMemory[0] = 8'd3;
-DataMemory[8] = 8'd1;
-DataMemory[16] = 8'd4;
-DataMemory[24] = 8'd2;
+DataMemory[0] = 8'd1;
+DataMemory[8] = 8'd2;
+DataMemory[16] = 8'd3;
+DataMemory[24] = 8'd4;
 
 end
 

@@ -101,6 +101,6 @@ module RISC_V_Processor_TB();
     end
     
     always
-        #2 clk = ~clk;
+        #5 clk = ~clk;
     
     endmodule
