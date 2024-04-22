@@ -9,7 +9,8 @@ input [4:0]RS2,
 input [4:0]RD,
 input RegWrite, clk, reset,
 output reg [63:0]ReadData1,
-output reg [63:0]ReadData2
+output reg [63:0]ReadData2,
+output [63:0] R8, R19, R20, R21, R22
 );
 reg[63:0] Registers [31:0]; //initialize Registers with random values (using 'initial' block)
 initial
@@ -47,6 +48,13 @@ Registers[29] = 64'd30;
 Registers[30] = 64'd31;
 Registers[31] = 64'd32;
 end
+
+assign r8 = Registers[8];
+assign r19 = Registers[19];
+assign r20 = Registers[20];
+assign r21 = Registers[26];
+assign r22 = Registers[27];
+
 //operation of writing data into a Register should always be done when
 //positive edge of clock and RegWrite signal is asserted (or set, i.e. High)
 always @ (*)
