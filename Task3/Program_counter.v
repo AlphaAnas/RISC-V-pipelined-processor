@@ -2,7 +2,7 @@
 
 module Program_Counter
 (
-input clk,reset,
+input clk,reset,stall,
 input [63:0] PC_In,
 output reg [63:0] PC_Out
 );

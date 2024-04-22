@@ -73,7 +73,7 @@ wire branch, MemRead, MemToReg, MemWrite, ALUSrc, RegWrite;
 wire [1:0] ALUOp;
 
 //Register File
-wire MEMWEBRegWrite_Out;
+wire MEMWEBRegWrite;//MEMWEBRegWrite_Out;
 wire [63:0] ReadData1;
 wire [63:0] ReadData2;
 wire [63:0] R8;
@@ -89,14 +89,14 @@ wire [63:0] PC_In, PC_Out;
 
 
 //Adder
-wire [63:0] AdderOut1, AdderOu2;
+wire [63:0] Adder1Out, Adder2Out;
 
 //Instruction Memory
-wire [31:0] Instruction, IFIDIns_Out;
+wire [31:0] Instruction, PC_Out, IFIDIns_Out;
 
 //Instruction Parser
-wire [6:0] Opcode;
-wire [4:0] RS1, RS2, RD;
+wire [6:0] opcode;
+wire [4:0] rs1, rs2, rd;
 wire [2:0] funct3;
 wire[6:0] funct7;
 
@@ -167,7 +167,7 @@ wire [63:0] random;
   Instruction_Memory IM(PC_Out, Instruction);
   Adder A1(PC_Out, 64'd4, Adder1Out);
 
-  IFID ifid(clk, reset, PC_Out, flush, Instruction, IFID_Out, IFIDIns_Out);
+  IFID ifid(clk, reset, flush, stall, PC_Out, Instruction, IFID_Out, IFIDIns_Out);
 
   InsParser IP(IFIDIns_Out, opcode, rd, funct3, rs1, rs2, funct7);
   Control_Unit CU(opcode, stall, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, ALUOp);
@@ -195,8 +195,8 @@ Mux M2(Mux_3to1Out2, IDEXimm_data, IDEXALUSrc, Mux2Out);
 ALU_64_bit A(Mux_3to1Out1, Mux2Out, Operation, Result, ZERO);
 ALU_Control AC(IDEXALUOp, IDEXfunct3, Operation);
 
-EXMEM exmem (clk, reset,  Adder2Out, Result, ZERO, Mux_3to1Out2, IDEXrd, IDEXBranch, IDEXMemRead, IDEXMemtoReg, IDEXMemWrite, IDEXRegWrite, 
-  branch_out,flush, EXMEMADDOUT, EXMEMZero, EXMEMALUResultOut, EXMEMMux_3to1Out2, EXMEMRD, EXMEMBranch, EXMEMMemRead, EXMEMMemtoReg, EXMEMMemWrite, EXMEMRegWrite, EXMEMbranch_out);
+EXMEM exmem (clk, reset, flush, Adder2Out, Result, ZERO, Mux_3to1Out2, IDEXrd, IDEXBranch, IDEXMemRead, IDEXMemtoReg, IDEXMemWrite, IDEXRegWrite, 
+  branch_out, EXMEMADDOUT, EXMEMZero, EXMEMALUResultOut, EXMEMMux_3to1Out2, EXMEMRD, EXMEMBranch, EXMEMMemRead, EXMEMMemtoReg, EXMEMMemWrite, EXMEMRegWrite, EXMEMbranch_out);
 
 Data_Memory DM(EXMEMALUResultOut, EXMEMMux_3to1Out2, clk, EXMEMMemWrite, EXMEMMemRead, val1, val2, val3, val4, Read_Data);
 Mux M1(Adder1Out, EXMEMADDOUT, ( EXMEMbranch_out && EXMEMZero), PC_In); // right pr sb se ooper wala

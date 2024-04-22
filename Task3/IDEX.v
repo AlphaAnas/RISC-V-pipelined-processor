@@ -22,7 +22,7 @@
 
 module IDEX(
     input clk,
-    input reset,
+    input reset, flush,
     input [63:0] IFID_Out, 
     input [63:0] ReadData1,
     input [63:0] ReadData2, 
@@ -41,7 +41,7 @@ module IDEX(
     );
     
 always @(posedge clk) begin
-    if (reset == 1'b1)begin
+    if (reset == 1'b1 || flush == 1'b1)begin
         IDEX_Out = 0;
         IDEXReadData1 = 0;
         IDEXReadData2 = 0;

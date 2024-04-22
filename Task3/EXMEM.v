@@ -1,5 +1,5 @@
 module EXMEM(
-  input clk,reset,
+  input clk,reset, flush,
   input [63:0] Adder2Out, //adder output
   input [63:0] Result,//64bit alu output
   input Zero,//64bit alu output
@@ -19,7 +19,7 @@ module EXMEM(
 
  always @(posedge clk)
     begin
-      if (reset == 1'b1)
+      if (reset == 1'b1 || flush == 1'b1)
         begin
           EXMEMADDOUT = 64'b0;
           EXMEMZero = 1'b0;
