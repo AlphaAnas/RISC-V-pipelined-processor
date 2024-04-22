@@ -27,14 +27,14 @@ output wire [63:0] mux2out,
 output wire [3:0] operation,
 output wire [63:0] aluout,
 output wire [63:0] datamemoryreaddata,
-output wire [63:0] element1,
-  output wire [63:0] element2,
-  output wire [63:0] element3,
-  output wire [63:0] element4,
-  output wire [63:0] element5,
-  output wire [63:0] element6,
-  output wire [63:0] element7,
-  output wire [63:0] element8
+output wire [63:0] val1,
+  output wire [63:0] val2,
+  output wire [63:0] val3,
+  output wire [63:0] val4
+//  output wire [63:0] element5,
+//  output wire [63:0] element6,
+//  output wire [63:0] element7,
+//  output wire [63:0] element8
     );
 
 wire branch_finale;
@@ -54,7 +54,7 @@ assign funct = {instruction[30], instruction[14:12]};
 ALU_Control alu_c(aluop, funct, operation);
 adder a2(pc_out, immdata*2, adder2_out);
 ALU_64_bit alu(readdata1, mux2out, operation, aluout, zero);
-Data_Memory dm(aluout, readdata2, clk, memwrite, memread, datamemoryreaddata,element1,element2,element3,element4,element5,element6,element7,element8);
+Data_Memory dm(aluout, readdata2, clk, memwrite, memread, datamemoryreaddata,val1,val2,val3,val4);
 Mux m3(aluout, datamemoryreaddata, memtoreg, writedata);
 branch_module bu(funct3, readdata1, mux2out, branch_finale);
 endmodule
