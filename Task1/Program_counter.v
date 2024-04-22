@@ -11,8 +11,8 @@ PC_Out=64'd0;
 always @ (posedge clk or posedge reset)
 begin
 if (reset)
-PC_Out=64'd0;
+    PC_Out=64'd0;
 else
-PC_Out=PC_In;
+    PC_Out=PC_In;
 end
 endmodule
