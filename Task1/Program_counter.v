@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module Program_Counter
+module Program_counter
 (
 input clk,reset,
 input [63:0] PC_In,
@@ -16,4 +16,3 @@ else
 PC_Out=PC_In;
 end
 endmodule
-

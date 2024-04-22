@@ -1,65 +1,60 @@
 `timescale 1ns / 1ps
 
-// hellooooooooooooooooooooooooooooooooo
-
 module RISC_V_Processor(
-    input clk,
-    input reset,
-    output wire [63:0] PC_Out,
-    output wire [63:0] PC_In,
-    output wire [31:0] Instruction,
-    output wire [4:0] rs1,
-    output wire [4:0] rs2,
-    output wire [4:0] rd,
-    output wire [63:0] WriteData,
-    output wire [63:0] ReadData1,
-    output wire [63:0] ReadData2,
-    output wire [63:0] imm_data,
-    output wire [63:0] Mux2Out,
-    output wire [63:0] Result,
-    output wire ZERO,
-    output wire [63:0] Read_Data,
-    output wire [63:0] Adder1Out,
-    output wire [6:0] opcode,
-    output wire [2:0] funct3,
-    output wire [6:0] funct7,
-    output wire Branch,
-    output wire MemRead,
-    output wire MemtoReg,
-    output wire MemWrite,
-    output wire ALUSrc,
-    output wire RegWrite,
-    output wire [1:0] ALUOp,
-    output wire [63:0] Adder2Out,
-    output wire [3:0] Operation,
-    output wire [63:0] val1,
-    output wire [63:0] val2,
-    output wire [63:0] val3,
-    output wire [63:0] val4
+input clk,
+input reset,
+output wire [63:0] pc_out,
+output wire [63:0] adder1_out,
+output wire [63:0] adder2_out,
+output wire [63:0] pc_in,
+//output wire branch,
+output wire zero,
+output wire [31:0] instruction,
+output wire [6:0] opcode,
+output wire [4:0] rd,
+output wire [2:0] funct3,
+output wire [4:0] rs1,
+output wire [4:0] rs2,
+output wire [6:0] funct7,
+output wire [63:0]writedata,
+//output wire regwrite,
+output wire [63:0]readdata1,
+output wire [63:0]readdata2,
+output wire branch, memread, memtoreg, memwrite, alusrc, regwrite,
+output wire [1:0] aluop,
+output wire [63:0] immdata,
+output wire [63:0] mux2out,
+output wire [3:0] operation,
+output wire [63:0] aluout,
+output wire [63:0] datamemoryreaddata,
+output wire [63:0] element1,
+  output wire [63:0] element2,
+  output wire [63:0] element3,
+  output wire [63:0] element4,
+  output wire [63:0] element5,
+  output wire [63:0] element6,
+  output wire [63:0] element7,
+  output wire [63:0] element8
+    );
 
-);
-
-wire [3:0] Funct;
-wire [63:0] b = imm_data << 2; // doing shift left by 1 bit
-wire branch_out;
-//wire PC_Src = branch_out & ZERO;
-
-Adder A1(PC_Out, 64'd4, Adder1Out);
-Mux M1(Adder1Out, Adder2Out, ( branch_out && ZERO), PC_In); // right pr sb se ooper wala
-Program_Counter PC(clk, reset, PC_In, PC_Out);
-Instruction_Memory IM(PC_Out, Instruction);
-InsParser IP(Instruction, opcode, rd, funct3, rs1, rs2, funct7);
-Control_Unit CU(opcode, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, ALUOp);
-registerFile RF(WriteData, rs1, rs2, rd, RegWrite, clk, reset, ReadData1, ReadData2);
-ImmGen IG(Instruction, imm_data);
-Mux M2(ReadData2, imm_data, ALUSrc, Mux2Out);
-
-assign funct = {Instruction[30], Instruction[14:12]};
-ALU_Control AC(ALUOp, funct, Operation);
-Adder A2(PC_Out, imm_data*2, Adder2Out);
-ALU_64_bit A(ReadData1, Mux2Out, Operation, Result, ZERO);
-Data_Memory DM(Result, ReadData2, clk, MemWrite, MemRead, val1, val2, val3, val4, Read_Data);
-Mux M3(Read_Data, Result, MemtoReg, WriteData);
-branching_module bu(funct3, ReadData1, Mux2Out, branch_out);
-
+wire branch_finale;
+wire [3:0] funct;    
+    
+    
+adder a1(pc_out, 64'd4, adder1_out);
+Mux m1(adder1_out, adder2_out,(branch&&branch_finale) , pc_in);
+Program_counter pc(clk, reset, pc_in,pc_out);
+Instruction_memory im(pc_out, instruction);
+Instruction_Parser ip(instruction, opcode, rd, funct3, rs1, rs2, funct7);
+Control_unit cu(opcode, branch, memread, memtoreg, memwrite, alusrc, regwrite, aluop);
+Register_file rf(writedata, rs1, rs2, rd, regwrite, clk, reset, readdata1, readdata2);
+immgen imm_gen(instruction, immdata);
+Mux m2(readdata2, immdata, alusrc, mux2out);
+assign funct = {instruction[30], instruction[14:12]};
+ALU_Control alu_c(aluop, funct, operation);
+adder a2(pc_out, immdata*2, adder2_out);
+ALU_64_bit alu(readdata1, mux2out, operation, aluout, zero);
+Data_Memory dm(aluout, readdata2, clk, memwrite, memread, datamemoryreaddata,element1,element2,element3,element4,element5,element6,element7,element8);
+Mux m3(aluout, datamemoryreaddata, memtoreg, writedata);
+branch_module bu(funct3, readdata1, mux2out, branch_finale);
 endmodule
