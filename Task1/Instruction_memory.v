@@ -37,34 +37,34 @@ begin
       //ld x26, 0(x18)
       {inst_mem[47], inst_mem[46], inst_mem[45], inst_mem[44]} = 32'h00093d03;//48
       
-      
+      //ld x27, 0(x19)
       {inst_mem[51], inst_mem[50], inst_mem[49], inst_mem[48]} = 32'h0009bd83;//52
       
-      
+      //blt x26, x27, 8
       {inst_mem[55], inst_mem[54], inst_mem[53], inst_mem[52]} = 32'h01bd4463;//56
       
-      
+      //beq x0, x0, -24
       {inst_mem[59], inst_mem[58], inst_mem[57], inst_mem[56]} = 32'hfe0004e3;//60
       
-      
+      //add x5, x0, x26
       {inst_mem[63], inst_mem[62], inst_mem[61], inst_mem[60]} = 32'h01a002b3;//64
       
-      
+      //sd x27, 0(x18)
       {inst_mem[67], inst_mem[66], inst_mem[65], inst_mem[64]} = 32'h01b93023;//68
-      
-      
+                                                                   
+      //sd x5, 0(x19)
       {inst_mem[71], inst_mem[70], inst_mem[69], inst_mem[68]} = 32'h0059b023;//72
       
-      
+      //beq x0, x0, -20
       {inst_mem[75], inst_mem[74], inst_mem[73], inst_mem[72]} = 32'hfc000ce3;//76
       
-      
+      //addi x8, x8, 1
       {inst_mem[79], inst_mem[78], inst_mem[77], inst_mem[76]} = 32'h00140413;//80
       
-      
+      //addi x18, x18, 8
       {inst_mem[83], inst_mem[82], inst_mem[81], inst_mem[80]} = 32'h00890913;//84
       
-      
+      //beq x0, x0, -76
       {inst_mem[87], inst_mem[86], inst_mem[85], inst_mem[84]} = 32'hfa000ae3;//88
 end
 always @(Inst_Address)
