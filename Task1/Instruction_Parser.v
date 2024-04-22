@@ -1,8 +1,6 @@
 `timescale 1ns / 1ps
 
-
-
-module InsParser
+module Instruction_Parser
 (
 input [31:0] instruction,
 output [6:0] opcode,
@@ -19,4 +17,5 @@ assign rs1 = instruction [19:15];
 assign rs2 = instruction [24:20];
 assign funct7 = instruction [31:25];
 endmodule
+
 

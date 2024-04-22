@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 
-module Adder
+module adder
 (
 input [63:0] a,b,
 output reg [63:0] out

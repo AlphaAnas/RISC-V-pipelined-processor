@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
 
-module branching_module
+module branch_module
   (
    input [2:0] funct3,
     input [63:0] readData1,
-    input [63:0] readData2,
+    input [63:0] b,
    output reg addermuxselect
   );
   
@@ -15,24 +15,24 @@ module branching_module
   
   always @(*)
 	begin
-      case (funct3)   // beq
+      case (funct3)
         3'b000:
           begin
-            if (readData1 == readData2)
+            if (readData1 == b)
               addermuxselect = 1'b1;
             else
               addermuxselect = 1'b0;
             end
-         3'b100:  //blt
+         3'b100:
     		begin
-              if (readData1 < readData2)
+              if (readData1 < b)
               addermuxselect = 1'b1;
             else
               addermuxselect = 1'b0;
             end
-        3'b101:   //bgt
+        3'b101:
           begin
-            if (readData1 > readData2)
+            if (readData1 > b)
           	addermuxselect = 1'b1;
            else
               addermuxselect = 1'b0;
@@ -40,3 +40,47 @@ module branching_module
       endcase
      end
 endmodule
+
+
+//`timescale 1ns / 1ps
+
+//module branch_module
+//  (
+//   input [2:0] funct3,
+//    input [63:0] readData1,
+//    input [63:0] readData2,
+//   output reg addermuxselect
+//  );
+  
+//  initial
+//    begin
+//      addermuxselect = 1'b0;
+//    end
+  
+//  always @(*)
+//	begin
+//      case (funct3)   // beq
+//        3'b000:
+//          begin
+//            if (readData1 == readData2)
+//              addermuxselect = 1'b1;
+//            else
+//              addermuxselect = 1'b0;
+//            end
+//         3'b100:  //blt
+//    		begin
+//              if (readData1 < readData2)
+//              addermuxselect = 1'b1;
+//            else
+//              addermuxselect = 1'b0;
+//            end
+//        3'b101:   //bgt
+//          begin
+//            if (readData1 > readData2)
+//          	addermuxselect = 1'b1;
+//           else
+//              addermuxselect = 1'b0;
+//          end    
+//      endcase
+//     end
+//endmodule
