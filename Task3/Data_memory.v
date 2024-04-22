@@ -10,7 +10,7 @@ input clk, MemWrite, MemRead,
 output [63:0] val1,
 output [63:0] val2, 
 output [63:0] val3,
-output [63:0]val4,
+output [63:0] val4,
 output reg [63:0] Read_Data
 );
 reg [7:0] DataMemory [255:0];
