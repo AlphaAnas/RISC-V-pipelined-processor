@@ -15,6 +15,7 @@ reg[63:0] Registers [31:0]; //initialize Registers with random values (using 'in
 
 initial
 begin
+
 //load zeros in the registers initially 
 Registers[0] = 64'd0;
 Registers[1] = 64'd0;
@@ -48,6 +49,7 @@ Registers[28] = 64'd0;
 Registers[29] = 64'd0;
 Registers[30] = 64'd0;
 Registers[31] = 64'd0;
+
 end
 //operation of writing data into a Register should always be done when
 //positive edge of clock and RegWrite signal is asserted (or set, i.e. High)

@@ -1,0 +1,30 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/2_1mux.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/EXMEM.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/ForwardingUnit.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/IDEX.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/IFID.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/MEMWB.v" \
+"../../../../task3.srcs/sources_1/new/RISC_V_Processor.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/ThreebyOneMux.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/adder.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/alu_64bit.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/alu_control.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/branching_unit.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/control_unit.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/data_memory.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/hazard_detection_unit.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/imm_data_extractor.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/instruction_memory.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/instruction_parser.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/pipeline_flush.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/program_counter.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/reg_file.v" \
+"../../../../../Bubble-Sort-on-Pipelined-RISC-V-Processor-main/task3/testbench.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
