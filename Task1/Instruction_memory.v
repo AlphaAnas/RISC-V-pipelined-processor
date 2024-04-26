@@ -8,7 +8,7 @@ output reg [31:0] Instruction
 reg [7:0] inst_mem [87:0];// we will make it bigger as per the memory required
 initial
 begin
-//ADDI x18 x0, 0
+//addi x18 x0, 0
        {inst_mem[3], inst_mem[2], inst_mem[1], inst_mem[0]} = 32'h00000913;//4
 //add x8, x0, x0
       {inst_mem[7], inst_mem[6], inst_mem[5], inst_mem[4]} =  32'h00000433;//8
