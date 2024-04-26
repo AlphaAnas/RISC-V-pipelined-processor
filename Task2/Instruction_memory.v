@@ -8,8 +8,8 @@ output reg [31:0] Instruction
 reg [7:0] inst_mem [87:0];
 initial
 begin
-// add x9, x9, x8
 
+// add x9, x9, x8
 inst_mem[0] = 8'b10110011;
 inst_mem[1] = 8'b10000100;
 inst_mem[2] = 8'b10000100;
@@ -32,6 +32,7 @@ inst_mem[12] = 8'b10010011;
 inst_mem[13] = 8'b10000100;
 inst_mem[14] = 8'b01010100;
 inst_mem[15] = 8'b00000000;
+
 end
 
 
