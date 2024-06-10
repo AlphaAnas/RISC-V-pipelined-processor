@@ -10,8 +10,9 @@ Task 1 is implementation of a complete processor as per the circuit [diagram]{} 
 Task 2 is implementation of a complete *Pipelined* processor as per the circuit [diagram]{} . Thereof, it can executed parallel processing - each instruction can be executed whilst previous instruction is executing.
 It achiieves this through forwarding. For instance
 
-**add x1 , x2, x3
-sub x4, x1, x6**
+**add x1 , x2, x3**
+
+**sub x4, x1, x6**
 The above is example of type 1a data hazard and this is mitigated through forwarding the value of x1 at EXE stage to the ID stage of next instruction
 Thereof, it is important to note here that LOAD USE DATA HAZARD is solved using stalling.
 '''
